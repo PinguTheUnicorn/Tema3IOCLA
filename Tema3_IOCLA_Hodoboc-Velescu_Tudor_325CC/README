@@ -1,0 +1,41 @@
+Tema-3 IOCLA AST
+Hodoboc-Velescu Tudor 325CC
+
+Details about the implementation
+
+1. iocla_atoi
+This function implements the function atoi from C. It has an argument, the char
+array representing a number and returns its integer form. The array is traversed.
+Each element is converted to an integer by decreasing the ASCII value of 0(it
+being 48). The value is stored in a variable by multiplying the variable by 10
+and added to it. The process is repeated until there aren't any other characters
+left. If the first character is a minus sign, the sign is stored as a -1 and the
+integer form is multiplied by it at the end.
+
+2. create_tree
+This function creates an AST tree from a string representing the prefix
+expression. The string is given as an argument; the function returns the root
+of the tree. Firstly, the memory for the node is allocated using thr malloc
+function from C. Then, the first element of the expression is taken from the
+string using strtok function. It is allocated memory and the content is copied
+using strdup function. This element is stored in the data section of the node
+and, because the original string represents the prefixed expression, it will
+represent the root node of the tree. After this, we get the next token using
+strtok and use an auxiliary function, make_nodes, to create the rest of the
+tree.
+
+3. make_nodes
+This function creates the nodes for the rest of the tree. It has two arguments,
+the root of the left and right nodes that wil be created and the data for the
+first node. First, we allocate memeory for both left and right nodes. Then, the
+data for the left node is copied into the data section of the node using strdup
+similar as in the create_tree function. If the data represents an operator, the
+function is called again, with the left node and the next element as the
+argument. The next element is obtained using strtok function. If the data is a
+number, than the nodes bonds of the left node are make null. After it's over
+with the left node, this process is repeated with the right node the the
+function ends.
+
+Other details
+Total time required for the implementation: around 24 hours
+Difficulty: medium to hard, depending on how well you know how to use gdb
